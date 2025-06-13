@@ -26,7 +26,8 @@ if needs_build_package ; then
 
   setup_package_build $PACKAGE $PACKAGE_VERSION
 
-  wrap cmake \
+  wrap cmake --debug-output \
+      -DBUILD_SHARED_LIBS=OFF \
       -DBUILD_TESTING=OFF \
       -DCMAKE_BUILD_TYPE=RELEASE \
       -DCMAKE_INSTALL_PREFIX=$LOCAL_INSTALL \
@@ -38,7 +39,8 @@ if needs_build_package ; then
       -DProtobuf_ROOT=${BUILD_DIR}/protobuf-${PROTOBUF_VERSION} \
       -DZLIB_ROOT=${BUILD_DIR}/zlib-${ZLIB_VERSION} \
       -DWITH_OTLP_HTTP=ON \
-      -DWITH_OTLP_HTTP_COMPRESSION=ON
+      -DWITH_OTLP_HTTP_COMPRESSION=ON \
+      -DWITH_THREAD_INSTRUMENTATION_PREVIEW=ON
   wrap make -j${BUILD_THREADS:-4}
   wrap make install
 
