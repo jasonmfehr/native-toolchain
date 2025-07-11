@@ -19,6 +19,7 @@ set -e
 set -u
 
 set -o pipefail
+set -x
 
 source $SOURCE_DIR/functions.sh
 THIS_DIR="$( cd "$( dirname "$0" )" && pwd )"
