@@ -198,6 +198,8 @@ function install_kudu {
         cp "$F" "$INSTALL_DIR/bin"
     fi
   done
+
+  cp kudu "${INSTALL_DIR}/bin"
   popd
 
   # Install the web server resources.
